@@ -1,0 +1,14 @@
+1. Create an EKS Cluster, IAM Role for CodeBuild, and Authorize the CodeBuild
+   Create an EKS Cluster - Start with creating an EKS cluster in your preferred region, using eksctl command.
+   IAM Role for CodeBuild - Create an IAM role that the Codebuild will assume to access your k8s/EKS cluster. This IAM role will have the necessary access permissions (attached JSON policies),
+   Authorize the CodeBuild using EKS RBAC - Add IAM Role to the Kubernetes cluster's configMap.
+
+2. Deployment to Kubernetes using CodePipeline and CodeBuild
+  Generate a Github access token
+  Cenerate an access-token from your Github account. We will share this token with the Codebuild service so that it can listen to the the repository commits.
+  Create Codebuild and CodePipeline resources using CloudFormation template
+  Create a pipeline watching for commits to your Github repository using Cloudformation template (.yaml) file.
+  Set a Secret using AWS Parameter Store
+  In order to pass your JWT secret to the app in Kubernetes securely, you will set the JWT secret using AWS parameter store.
+  Build and deploy
+  Finally, you will trigger the build based on a Github commit.
